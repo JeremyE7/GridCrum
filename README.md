@@ -1,68 +1,68 @@
-# Proyecto GridCrum
+# Project GridCrum
 
-GridCrum es una herramienta de gestión de proyectos diseñada para facilitar la implementación de la metodología Scrum, con un enfoque visual en el uso de cuadriculas o grids para una mejor organización y seguimiento. Este software, desarrollado con Next.js, combina la simplicidad de la metodología ágil Scrum con una interfaz intuitiva basada en cuadriculas para una gestión visual y efectiva de proyectos.
+GridCrum is a project management tool designed to facilitate the implementation of the Scrum methodology, focusing on a visual approach using grids for better organization and tracking. This software, developed with Next.js, combines the simplicity of the Scrum agile methodology with an intuitive grid-based interface for effective and visual project management.
 
-## Características Principales
+## Key Features
 
-- **Metodología Scrum:** Adopta las prácticas ágiles de Scrum para planificar, realizar seguimientos y colaborar en proyectos de desarrollo de software.
+- **Scrum Methodology:** Adopts agile Scrum practices for planning, tracking, and collaborating on software development projects.
 
-- **Gestión Visual con Cuadriculas:** Utiliza cuadriculas para representar tareas, historias de usuario, sprints y más, brindando una vista clara y organizada del progreso del proyecto.
+- **Visual Management with Grids:** Utilizes grids to represent tasks, user stories, sprints, and more, providing a clear and organized view of project progress.
 
-- **Interfaz Intuitiva:** Diseñada para ser fácil de usar, fomentando la colaboración entre los miembros del equipo y permitiendo una rápida adaptación a la metodología Scrum.
+- **Intuitive Interface:** Designed to be user-friendly, encouraging collaboration among team members and enabling quick adaptation to the Scrum methodology.
 
-## Requisitos Previos
+## Prerequisites
 
-- Node.js: Asegúrate de tener Node.js instalado en tu máquina.
+- Node.js: Ensure you have Node.js installed on your machine.
 
-### Instalación
+## Installation
 
-1. **Clona el Repositorio:**
+1. **Clone the Repository:**
    ```bash
-   git clone https://github.com/tu-usuario/GridCrum.git
+   git clone https://github.com/your-username/GridCrum.git
    ```
 
-2. **Ingresa al Directorio del Proyecto:**
+2. **Navigate to the Project Directory:**
    ```bash
    cd GridCrum
    ```
 
-3. **Instala las Dependencias:**
+3. **Install Dependencies:**
    ```bash
    npm install
    ```
 
-### Configuración
+## Configuration
 
-Asegúrate de configurar correctamente cualquier variable de entorno necesaria en un archivo `.env` en la raíz del proyecto.
+Make sure to correctly set any necessary environment variables in a `.env` file at the root of the project.
 
-### Iniciar la Aplicación
+## Start the Application
 
 ```bash
 npm run dev
 ```
 
-La aplicación estará disponible en [http://localhost:3000](http://localhost:3000). Abre tu navegador y accede a esta URL para comenzar a utilizar GridCrum.
+The application will be available at [http://localhost:3000](http://localhost:3000). Open your browser and access this URL to start using GridCrum.
 
-### Uso
+## Usage
 
-- Accede a la aplicación en tu navegador.
-- Regístrate o inicia sesión con tu cuenta.
-- Crea un nuevo proyecto y comienza a organizar tus tareas y sprints utilizando las cuadriculas.
+- Access the application in your browser.
+- Register or log in with your account.
+- Create a new project and start organizing your tasks and sprints using the grids.
 
-### Contribuir
+## Contributing
 
-Si deseas contribuir al desarrollo de GridCrum, por favor sigue estos pasos:
+If you want to contribute to the development of GridCrum, please follow these steps:
 
-1. Realiza un fork del repositorio.
-2. Crea una rama para tu función o corrección de bug: `git checkout -b nombre-de-la-rama`.
-3. Realiza tus cambios y realiza un commit: `git commit -m "Descripción de los cambios"`.
-4. Haz un push a tu rama: `git push origin nombre-de-la-rama`.
-5. Abre un Pull Request en GitHub.
+1. Fork the repository.
+2. Create a branch for your feature or bug fix: `git checkout -b branch-name`.
+3. Make your changes and commit: `git commit -m "Description of changes"`.
+4. Push to your branch: `git push origin branch-name`.
+5. Open a Pull Request on GitHub.
 
-### Problemas y Soporte
+## Issues and Support
 
-Si encuentras algún problema o necesitas ayuda, por favor abre un issue en el [repositorio de GitHub](https://github.com/tu-usuario/GridCrum/issues).
+If you encounter any issues or need assistance, please open an issue on the [GitHub repository](https://github.com/your-username/GridCrum/issues).
 
-### Licencia
+## License
 
-Este proyecto está bajo la Licencia MIT - ver el archivo [LICENSE](LICENSE) para más detalles.
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
