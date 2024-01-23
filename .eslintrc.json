@@ -1,3 +1,10 @@
 {
-  "extends": "next/core-web-vitals"
+  "parserOptions": {
+    "project": "./tsconfig.json"
+  },
+  "extends": ["./node_modules/ts-standard/eslintrc.json"],
+  "rules": {
+    "import/no-absolute-path": "off",
+    "@typescript-eslint/no-floating-promises": "off"
+  }
 }
