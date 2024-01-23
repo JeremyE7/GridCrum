@@ -1,0 +1,26 @@
+.chip{
+    margin: 0 5px;
+    padding: 5px;
+    border-radius: 5px;
+    background-color: #222;
+    color: #000;
+    font-size: 12px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+
+.chip:hover{
+    background-color: #bdbdbd;
+}
+
+.divider{
+    margin: 10px 0;
+    border-bottom: 1px solid var(--accent);
+}
+
+.addProjectTagModel{
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
