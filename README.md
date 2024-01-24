@@ -55,8 +55,7 @@ If you want to contribute to the development of GridCrum, please follow these st
 
 1. Fork the repository.
 2. Create a branch for your feature or bug fix: `git checkout -b branch-name`.
-3. Make your changes and commit: `git commit -m "Description of changes"`.
-   - If you can add a picture of the changes, that will be better
+3. Make your changes and commit, if you can add a picture of the changes that will be better: `git commit -m "Description of changes"`.
 5. Push to your branch: `git push origin branch-name`.
 6. Open a Pull Request on GitHub.
 
