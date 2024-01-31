@@ -1,0 +1,83 @@
+.gridItem {
+    background-color: var(--backlite);
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 1px 5px 5px 0px rgba(0, 0, 0, 0.2);
+    -webkit-box-shadow: 1px 5px 5px 0px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 1px 5px 5px 0px rgba(0, 0, 0, 0.75);
+    overflow-x: hidden;
+    box-sizing: border-box;
+    padding: 0;
+    container-name: gridItem;
+    container-type: size;
+}
+
+.gridItem::-webkit-scrollbar {
+    display: none;
+}
+
+.gridItem img {
+    width: 100%;
+    height: 50%;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.gridItem footer {
+    width: 100%;
+    height: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding: 0px 10px;
+    margin-top: 10px;
+    box-sizing: border-box;
+}
+
+.gridItem footer p {
+    padding: 0;
+}
+
+.gridItem footer span {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 5px;
+}
+
+@container gridItem (max-width: 100px) {
+    .gridItem footer h1{
+        font-size: 1rem;
+    }
+
+    .gridItem footer p{
+        font-size: 0.8rem;
+    }
+
+    .gridItem footer span small{
+        display: none;
+    }
+}
+
+@container gridItem (max-height: 150px) and (max-width: 100px){
+    .gridItem footer p{
+        display: none;
+    }
+
+    .gridItem footer span small{
+        display: none;
+    }
+
+    .gridItem footer span h1{
+        text-align: center;
+        font-size: 0.8rem;
+    }
+
+    .gridItem footer{
+        align-items: center;
+    }
+}

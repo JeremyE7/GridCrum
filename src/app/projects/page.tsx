@@ -2,6 +2,7 @@
 
 import React from 'react'
 import styles from './page.module.css'
+import gridItemStyles from './gridItem.module.css'
 import '/node_modules/react-grid-layout/css/styles.css'
 import '/node_modules/react-resizable/css/styles.css'
 import { Responsive, WidthProvider } from 'react-grid-layout'
@@ -52,7 +53,7 @@ export default function Home (): JSX.Element {
       >
         {projects.map((project: ProjectItem, index) => {
           return (
-            <section key={project.i} className={styles.gridItem}>
+            <section key={project.i} className={gridItemStyles.gridItem}>
               <ProjectCard project={project} />
             </section>
           )
