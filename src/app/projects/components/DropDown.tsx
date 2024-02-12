@@ -1,6 +1,6 @@
 
 import DeleteIcon from '@/app/components/DeleteIcon'
-import styles from '../page.module.css'
+import styles from './css/dropdown.module.css'
 import AddIcon from '@/app/components/AddIcon'
 import EditIcon from '@/app/components/EditIcon'
 import Divider from '@/app/components/Divider'

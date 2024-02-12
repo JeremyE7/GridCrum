@@ -1,5 +1,5 @@
 import { useRef } from 'react'
-import styles from '../page.module.css'
+import styles from './css/modal.module.css'
 import { useOnClickOutside } from 'usehooks-ts'
 
 export default function AddUserTagsModal ({ dialogRef }: {
@@ -18,8 +18,12 @@ export default function AddUserTagsModal ({ dialogRef }: {
     console.log(name.value, textColor.value, backgroundColor.value)
   }
 
-  useOnClickOutside(sectionRef, () => {
+  const closeModal = (): void => {
     dialogRef.current?.close()
+  }
+
+  useOnClickOutside(sectionRef, () => {
+    closeModal()
   })
 
   return (
@@ -37,7 +41,7 @@ export default function AddUserTagsModal ({ dialogRef }: {
             <input type='color' id='backgroundColor' />
           </fieldset>
           <button type='submit'>Añadir</button>
-
+          <button className={styles.closeModalButton} onClick={closeModal}>Cancelar</button>
         </form>
       </section>
     </dialog>

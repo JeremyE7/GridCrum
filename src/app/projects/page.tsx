@@ -2,7 +2,7 @@
 
 import React from 'react'
 import styles from './page.module.css'
-import gridItemStyles from './gridItem.module.css'
+import gridItemStyles from './components/css/gridItem.module.css'
 import '/node_modules/react-grid-layout/css/styles.css'
 import '/node_modules/react-resizable/css/styles.css'
 import { Responsive, WidthProvider } from 'react-grid-layout'

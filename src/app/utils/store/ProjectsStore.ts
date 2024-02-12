@@ -29,6 +29,7 @@ export const useProjectsStore = create<ProjectsStore>((set) => ({
    */
   getProjects: async () => {
     const projects = await getProjects()
+    console.log(projects)
     set({ projects })
   },
   /**

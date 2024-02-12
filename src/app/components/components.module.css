@@ -8,10 +8,8 @@
     font-weight: 500;
     cursor: pointer;
     transition: all 0.3s ease-in-out;
-}
-
-.chip:hover{
-    background-color: #bdbdbd;
+    width: 70px;
+    text-align: center;
 }
 
 .divider{

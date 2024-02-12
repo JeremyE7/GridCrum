@@ -5,7 +5,7 @@ import { ProjectItem } from '../types'
  */
 export async function getProjects (): Promise<ProjectItem[]> {
   try {
-    const projects = await fetch('http://localhost:3000/mooks/projects.json')
+    const projects = await fetch('http://localhost:3001/api/projects/')
     return await projects.json()
   } catch (error) {
     return [{
