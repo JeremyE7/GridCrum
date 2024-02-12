@@ -1,30 +1,21 @@
+import Link from 'next/link'
 import styles from './page.module.css'
+import AnimatedBackground from './components/AnimatedBackground'
 
 export default function Home (): JSX.Element {
   return (
     <main className={styles.main}>
       <header>
         <nav>
-          <button>
+          <Link href='/register' className={styles.link}>
             Register
-          </button>
-          <button>
+          </Link>
+          <Link href='/login' className={styles.link}>
             Login
-          </button>
+          </Link>
         </nav>
       </header>
-      <ul className={styles.circles}>
-        <li />
-        <li />
-        <li />
-        <li />
-        <li />
-        <li />
-        <li />
-        <li />
-        <li />
-        <li />
-      </ul>
+      <AnimatedBackground />
       <section className={styles.presentation}>
         <h1>GridCrum</h1>
         <h3>
@@ -42,6 +33,12 @@ export default function Home (): JSX.Element {
           <h2>How does it work?</h2>
           <p>
             It's simple, first you need to register and create a new project, add the tasks, springs and dates and then you can start to manage your project.
+          </p>
+        </span>
+        <span>
+          <h2>What does GridCrum means?</h2>
+          <p>
+            GridCrum is a combination of the words Grid and Scrum, which is a method to manage projects. The grid is the main visual element of the tool, and the scrum is the method that it's based on.
           </p>
         </span>
       </section>
