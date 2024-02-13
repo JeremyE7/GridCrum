@@ -11,11 +11,17 @@ import { useProjects } from '../hooks/useProyects'
 import ProjectCard from './components/ProjectCard'
 import AddUserTagsModal from './components/AddUserTagsModal'
 import { useModalsStore } from '../utils/store/ModalsStore'
+import './layout.css'
+import { getLocalStorage } from '../utils/DocEvents'
+import { useRouter } from 'next/navigation'
 
 const ResponsiveGridLayout = WidthProvider(Responsive)
 
 export default function Home (): JSX.Element {
   const { projects, updateProjects } = useProjects()
+  const router = useRouter()
+
+  if (getLocalStorage('token') === null) router.back()
 
   const handleItemMoved = (
     newItem: Item[]

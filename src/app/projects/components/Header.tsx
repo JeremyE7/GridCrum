@@ -1,4 +1,4 @@
-import '@/app/globals.css'
+import '../layout.css'
 import Hamburguer from './Hamburguer'
 import BreadCrum from './BreadCrum'
 
