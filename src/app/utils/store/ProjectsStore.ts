@@ -7,7 +7,7 @@ import { getProjects } from '../ProjectsCrud'
  */
 interface ProjectsStore {
   projects: ProjectItem[]
-  getProjects: () => Promise<void>
+  getProjects: (id: string) => Promise<void>
   addProject: (project: ProjectItem) => void
   updateProjects: (projects: ProjectItem[]) => void
 }
@@ -27,8 +27,8 @@ export const useProjectsStore = create<ProjectsStore>((set) => ({
    * @returns
    * projects: ProjectItem[] Lista de Proyectos
    */
-  getProjects: async () => {
-    const projectsAux = await getProjects()
+  getProjects: async (id: string) => {
+    const projectsAux = await getProjects(id)
     const projects = projectsAux.projects
     set({ projects })
   },

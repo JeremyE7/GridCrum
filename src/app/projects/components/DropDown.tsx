@@ -9,11 +9,16 @@ import React from 'react'
 import { useModalsStore } from '@/app/utils/store/ModalsStore'
 
 export default function DropDown (): JSX.Element {
-  const { openModal, modalAddUserTag } = useModalsStore()
+  const { openModal, modalAddUserTag, modalAddProject } = useModalsStore()
 
   const handleShowAddUserTagModal = (): void => {
     openModal(modalAddUserTag.current)
   }
+
+  const handleShowAddProjectModal = (): void => {
+    openModal(modalAddProject.current)
+  }
+
   return (
     <>
       <nav className={styles.dropdown}>
@@ -23,7 +28,7 @@ export default function DropDown (): JSX.Element {
           </li>
           <Divider />
           <li>
-            <button><AddIcon /> Nuevo Proyecto</button>
+            <button onClick={handleShowAddProjectModal}><AddIcon /> Nuevo Proyecto</button>
           </li>
           <li>
             <button><DeleteIcon />Eliminar Proyecto</button>

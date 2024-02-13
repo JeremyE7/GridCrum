@@ -9,7 +9,7 @@ import { Toaster, toast } from 'sonner'
 import { useRouter } from 'next/navigation'
 
 export default function Login (): JSX.Element {
-  const { loginUser } = useUsers()
+  const { loginUser, setUser } = useUsers()
   const router = useRouter()
 
   function handleSubmit (event: FormEvent<HTMLFormElement>): void {
@@ -23,6 +23,7 @@ export default function Login (): JSX.Element {
         toast.error(user.msg)
       } else {
         toast.success(user.msg)
+        setUser(user.user as { id: string, name: string, email: string, password: string })
         form.reset()
         router.push('/projects')
       }

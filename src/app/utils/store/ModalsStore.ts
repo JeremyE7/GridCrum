@@ -5,6 +5,7 @@ import { create } from 'zustand'
  */
 interface ModalsStore {
   modalAddUserTag: React.MutableRefObject<HTMLDialogElement | null>
+  modalAddProject: React.MutableRefObject<HTMLDialogElement | null>
 
   openModal: (modal: HTMLDialogElement | null) => void
   closeModal: (modal: HTMLDialogElement | null) => void
@@ -12,6 +13,7 @@ interface ModalsStore {
 
 export const useModalsStore = create<ModalsStore>((set) => ({
   modalAddUserTag: { current: null },
+  modalAddProject: { current: null },
 
   openModal: (modal: HTMLDialogElement | null) => {
     modal?.showModal()

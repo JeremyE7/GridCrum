@@ -13,15 +13,14 @@ import AddUserTagsModal from './components/AddUserTagsModal'
 import { useModalsStore } from '../utils/store/ModalsStore'
 import './layout.css'
 import { getLocalStorage } from '../utils/DocEvents'
-import { useRouter } from 'next/navigation'
+import { redirect } from 'next/navigation'
+import CreateProjectModal from './components/CreateProjectModal'
 
 const ResponsiveGridLayout = WidthProvider(Responsive)
 
 export default function Home (): JSX.Element {
   const { projects, updateProjects } = useProjects()
-  const router = useRouter()
-
-  if (getLocalStorage('token') === null) router.back()
+  if (getLocalStorage('token') === null) redirect('/')
 
   const handleItemMoved = (
     newItem: Item[]
@@ -45,7 +44,7 @@ export default function Home (): JSX.Element {
     updateProjects(updatedProjects)
   }
 
-  const { modalAddUserTag } = useModalsStore()
+  const { modalAddUserTag, modalAddProject } = useModalsStore()
 
   return (
     <main>
@@ -66,6 +65,7 @@ export default function Home (): JSX.Element {
         })}
       </ResponsiveGridLayout>
       <AddUserTagsModal dialogRef={modalAddUserTag} />
+      <CreateProjectModal dialogRef={modalAddProject} />
     </main>
   )
 }
