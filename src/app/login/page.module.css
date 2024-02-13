@@ -1,0 +1,91 @@
+.main{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    position: relative;
+    z-index: 1;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100vh;
+}
+
+.main form{
+    width: 500px;
+}
+
+.main form fieldset{
+    margin-bottom: 20px;
+    display: grid;
+    grid-template-columns: 0.7fr auto;
+    gap: 40px;
+    border-color: var(--primary);
+    border-radius: 10px;
+    align-items: center;
+    padding: 30px;
+    height: 300px;
+}
+
+.main form fieldset input[type=text], .main form fieldset input[type=password], .main form fieldset input[type=email]{
+    padding: 10px;
+    border-radius: 10px;
+    border: none;
+    background-color: var(--backlite2);
+    color: var(--text);
+}
+
+.main form fieldset input[type=text]:focus, .main form fieldset input[type=password]:focus, .main form fieldset input[type=email]:focus{
+    outline: none;
+}
+
+.main legend{
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+.main form fieldset label{
+    font-size: 1.2rem;
+    font-weight: bold;
+    width: 100px;
+}
+
+.main form button{
+    background-color: var(--backlite2);
+    color: var(--primary);
+    border-radius: 10px;
+    padding: 10px;
+    font-size: 1.5rem;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+
+}
+
+.main form button:hover, .link:hover{
+    transform: scale(1.1);
+}
+
+.main form button:active, .link:active{
+    transform: scale(0.9);
+}
+
+.link{
+    background-color: var(--backlite2);
+    color: var(--alert);
+    border-radius: 10px;
+    padding: 10px;
+    font-size: 1.5rem;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.main form span{
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    align-items: center;
+
+}

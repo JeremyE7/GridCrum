@@ -2,10 +2,13 @@ import { User } from '../types'
 import { saveLocalStorage } from '../utils/DocEvents'
 import { login, register } from '../utils/UserCrud'
 
-export const useUsers = (): { loginUser: (user: { email: string, password: string }) => Promise<void>, registerUser: (newUser: User) => Promise<any> } => {
-  const loginUser = async (user: { email: string, password: string }): Promise<void> => {
+export const useUsers = (): { loginUser: (user: { email: string, password: string }) => Promise<{ msg: string, user: User | null, token: string }>, registerUser: (newUser: User) => Promise<{ msg: string, user: User } | { error: any }> } => {
+  const loginUser = async (user: { email: string, password: string }): Promise<{ msg: string, user: User | null, token: string }> => {
+    console.log('eiuhfiuwsefhisuefh')
     const userLoged = await login(user)
+    console.log(userLoged)
     saveLocalStorage(userLoged.token, 'token')
+    return { msg: userLoged.msg, user: userLoged.user, token: userLoged.token }
   }
 
   const registerUser = async (newUser: User): Promise<{ msg: string, user: User } | { error: any }> => {

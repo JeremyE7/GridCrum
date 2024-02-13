@@ -14,7 +14,7 @@ export async function register (newUser: User): Promise<{ msg: string, user: Use
   return registerUser
 }
 
-export async function login (user: { email: string, password: string }): Promise<User & { token: string }> {
+export async function login (user: { email: string, password: string }): Promise<{ user: User, token: string, msg: string }> {
   const login = await fetch('http://localhost:3001/api/user/login', {
     method: 'POST',
     headers: {

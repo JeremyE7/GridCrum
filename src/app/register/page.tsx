@@ -6,10 +6,12 @@ import { useUsers } from '../hooks/useUsers'
 import { Toaster, toast } from 'sonner'
 import { useState } from 'react'
 import Loading from '../components/Loading'
+import { useRouter } from 'next/navigation'
 
 export default function Register (): JSX.Element {
   const { registerUser } = useUsers()
   const [loading, setLoading] = useState(false)
+  const router = useRouter()
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
     e.preventDefault()
@@ -19,12 +21,13 @@ export default function Register (): JSX.Element {
     const email = data.get('email')
     const password = data.get('password')
     registerUser({ name: username as string, email: email as string, password: password as string }).then((data) => {
-      if (data.error !== undefined) {
+      if ('error' in data) {
         console.log(data.error)
         toast.error(data.error)
       } else {
         toast.success('Usuario registrado')
         form.reset()
+        router.push('/')
       }
     }).finally(() => setLoading(false))
     setLoading(true)
@@ -43,7 +46,7 @@ export default function Register (): JSX.Element {
           <input type='password' id='password' name='password' required minLength={6} />
         </fieldset>
         <span>
-          <Link href='/' className={styles.link}>Cancelar</Link>
+          <Link href='/' className={styles.link}>Cancel</Link>
           <button type='submit'>Register</button>
         </span>
       </form>
