@@ -1,15 +1,18 @@
-import { ProjectItem } from '@/app/types'
+import { Project } from '@/app/types'
 import { create } from 'zustand'
-import { getProjects } from '../ProjectsCrud'
+import { getProjects, updateProjects } from '../ProjectsCrud'
+import { Tag } from '@/app/hooks/useProyects'
 
 /**
  * Interface del store de proyectos
  */
 interface ProjectsStore {
-  projects: ProjectItem[]
+  projects: Project[]
+  tags: Tag[]
   getProjects: (id: string) => Promise<void>
-  addProject: (project: ProjectItem) => void
-  updateProjects: (projects: ProjectItem[]) => void
+  addProject: (project: Project) => void
+  updateProjects: (projects: Project[], userId: string) => Promise<void>
+  setTags: (tags: Tag[]) => void
 }
 
 /**
@@ -36,10 +39,15 @@ export const useProjectsStore = create<ProjectsStore>((set) => ({
    * Metodo para agregar un proyecto a la lista
    * @param project ProjectItem Proyecto a agregar
    */
-  addProject: (project: ProjectItem) => set((state) => ({ projects: [...state.projects, project] })),
+  addProject: (project: Project) => set((state) => ({ projects: [...state.projects, project] })),
   /**
    * Metodo para actualizar la lista de proyectos
    * @param projects ProjectItem[] Lista de proyectos
    */
-  updateProjects: (projects: ProjectItem[]) => set({ projects })
+  updateProjects: async (projects: Project[], userId: string) => {
+    const updatedProjects = await updateProjects(projects, userId)
+    set({ projects: updatedProjects.projects })
+  },
+  tags: [],
+  setTags: (tags: Tag[]) => set({ tags })
 }))

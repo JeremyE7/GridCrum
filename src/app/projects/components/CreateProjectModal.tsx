@@ -1,42 +1,57 @@
-import { useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import styles from './css/modal.module.css'
-import { useOnClickOutside } from 'usehooks-ts'
 import { useProjects } from '@/app/hooks/useProyects'
 import { Toaster, toast } from 'sonner'
-import Select from 'react-select'
-import makeAnimated from 'react-select/animated'
+import { getLocalStorage } from '@/app/utils/DocEvents'
 
 export default function CreateProjectModal ({ dialogRef }: {
   dialogRef: React.MutableRefObject<HTMLDialogElement | null>
 }): JSX.Element {
   const sectionRef = useRef<HTMLDivElement | null>(null)
-  const { createProject, getTags } = useProjects()
-  const animatedComponents = makeAnimated()
+  const { tags, createProject, getProjects } = useProjects()
+  const selectedTags = Array<string>()
 
-  const tagList: Array<{ value: any, label: any, color: any, colorText: any }> = []
-  getTags().then((tags) => {
-    tags.tags.forEach((tag: { _id: any, name: any, colorBackground: string, colorText: string }) => {
-      tagList.push({ value: tag._id, label: tag.name, color: tag.colorBackground, colorText: tag.colorText })
+  const [tagList, setTagList] = useState(Array<{ value: any, label: any, color: any, colorText: any }>)
+  useEffect(() => {
+    const tagListAux = Array<{ value: any, label: any, color: any, colorText: any }>()
+
+    tags.forEach((tag) => {
+      tagListAux.push({ value: tag._id, label: tag.name, color: tag.colorBackground, colorText: tag.colorText })
     })
-  })
+    setTagList(tagListAux)
+  }, [tags])
 
-  const customStyles = {
-    option: (provided: any, state: { data: { color: any, colorText: any } }) => ({
-      ...provided,
-      backgroundColor: state.data.color, // Usa el color especificado en el objeto de opciones
-      color: state.data.colorText
+  const handleSelectChange = (e: React.ChangeEvent<HTMLSelectElement>): void => {
+    selectedTags.length = 0
+    Array.from(e.target.selectedOptions).forEach((option) => {
+      selectedTags.push(option.value)
     })
   }
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
     e.preventDefault()
+    const data = new FormData(e.currentTarget)
+    const name = data.get('name') as string
+    const description = data.get('description') as string
+    const image = data.get('image') as string
+    const tags = selectedTags
+    const project = { name, description, image, tags, x: 0, y: 0, w: 2, h: 2, springs: [] }
+    const userId = getLocalStorage('user') ?? ''
+    createProject(project, userId).then((res) => {
+      if (res.project !== null && res.project !== undefined) {
+        toast.success('Proyecto creado correctamente')
+
+        getProjects(userId)
+        closeModal()
+      } else {
+        toast.error('Error al crear el proyecto')
+      }
+    })
   }
 
   const closeModal = (): void => {
     dialogRef.current?.close()
   }
-
-  const portalTarget = document.body // Elige el elemento donde deseas renderizar el menú
 
   return (
     <>
@@ -47,18 +62,28 @@ export default function CreateProjectModal ({ dialogRef }: {
             <fieldset>
               <legend>Datos del nuevo proyecto</legend>
               <label htmlFor='name'>Nombre</label>
-              <input type='text' id='name' placeholder='Negocio, Tarea, Presentación.....' />
+              <input type='text' id='name' name='name' placeholder='Negocio, Tarea, Presentación.....' />
               <label htmlFor='description'>Descripción</label>
-              <textarea id='description' placeholder='Este es un proyecto enfocado en.....' />
+              <textarea id='description' name='description' placeholder='Este es un proyecto enfocado en.....' />
               <label htmlFor='image'>Imagen</label>
-              <input type='text' id='image' placeholder='https://image/stock/.....' />
-              <label htmlFor='tags'>Tags</label>
-              <Select
-                components={animatedComponents}
-                options={tagList}
-                styles={customStyles}
-                menuPortalTarget={dialogRef}
-              />
+              <input type='text' id='image' name='image' placeholder='https://image/stock/.....' />
+              {tagList.length > 0
+                // eslint-disable-next-line operator-linebreak
+                ?
+                  <>
+                    <label htmlFor='tags'>Tags</label>
+                    <select id='tags' name='tags' multiple onChange={handleSelectChange}>
+                      {tagList.map((tag, index) => {
+                        return (
+                          <option key={index} value={tag.value} style={{ backgroundColor: tag.color, color: tag.colorText }}>
+                            {tag.label}
+                          </option>
+                        )
+                      })}
+                    </select>
+                  </>
+                : null}
+
             </fieldset>
             <button type='button' className={styles.closeButton} onClick={closeModal}>Cancelar</button>
             <button type='submit'>Añadir</button>

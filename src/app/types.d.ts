@@ -1,128 +1,148 @@
-type state = 'toDo' | 'inProgress' | 'done'
-type typeOfItem = 'proyect' | 'spring' | 'task' | 'reminder' | 'img' | 'video' | 'audio' | 'link'
-
 export interface User {
+  id: number
   name: string
   email: string
   password: string
+  projects: Project[]
+  projectTags: ProjectTag[]
+  taskTags: TaskTag[]
 }
 
-export interface Item {
+export interface ProjectTag {
   id: number
-  i: string
+  name: string
+  colorBackground: string
+  colorText: string
+  projectId?: number
+  project?: Project
+  userId: number
+  user: User
+}
+
+export interface Project {
+  id: number
   x: number
   y: number
   w: number
   h: number
-  minW?: number
-  minH?: number
-  type?: typeOfItem // Añadir type como propiedad común
-}
-
-export interface Proyect {
-  id: number
   name: string
   description: string
   image: string
-  tags: string[]
-  spring?: Spring[]
+  springs: Spring[]
+  tags: ProjectTag[] | string[]
+  user: User
+  userId: number
 }
 
-interface Spring {
+export interface Spring {
   id: number
   name: string
   description: string
   startDate: Date
   endDate: Date
-  state: state
-  tasks?: Task[]
+  state: string
+  proyectId: number
+  proyect: Project
+  tasks: Task[]
 }
 
-interface Task {
+export interface TaskTag {
   id: number
+  name: string
+  color: string
+  taskId: number
+  task: Task
+  userId: number
+  user: User
+}
+
+export interface Task {
+  id: number
+  x: number
+  y: number
+  w: number
+  h: number
   name: string
   description: string
   startDate: Date
   endDate: Date
-  state: state
+  state: string
+  springId: number
+  spring: Spring
+  board?: Board
   reminders: Reminder[]
-  board: Board
-  tags: string[]
+  tags: TaskTag[]
 }
 
-interface Board {
+export interface Reminder {
   id: number
   name: string
   description: string
   startDate: Date
   endDate: Date
-  state: state
+  state: string
+  taskId: number
+  task: Task
+}
+
+export interface Board {
+  id: number
+  name: string
+  description: string
+  startDate: Date
+  endDate: Date
+  state: string
   items: Item[]
+  task: Task
+  taskId: number
 }
 
-interface Reminder {
+export interface Item {
   id: number
-  name: string
-  description: string
-  startDate: Date
-  endDate: Date
-  state: state
+  x: number
+  y: number
+  w: number
+  h: number
+  board: Board
+  boardId: number
+  imgId?: number
+  videoId?: number
+  audioId?: number
+  linkId?: number
+  link?: Link
+  audio?: Audio
+  video?: Video
+  img?: Img
 }
 
-interface Img {
-  id: number
-  name: string
-  description: string
-  url: string
-}
-
-interface Video {
-  id: number
-  name: string
-  description: string
-  url: string
-}
-
-interface Audio {
-  id: number
-  name: string
-  description: string
-  url: string
-}
-
-interface Link {
+export interface Img {
   id: number
   name: string
   description: string
   url: string
+  item?: Item
 }
 
-export type ProjectItem = {
-  type: 'proyect' // Discriminante de tipo
-  data: Proyect
-} & Item
+export interface Video {
+  id: number
+  name: string
+  description: string
+  url: string
+  item?: Item
+}
 
-export type SpringItem = {
-  type: 'spring' // Discriminante de tipo
-  data: Spring
-} & Item
+export interface Audio {
+  id: number
+  name: string
+  description: string
+  url: string
+  item?: Item
+}
 
-export type TaskItem = {
-  type: 'task' // Discriminante de tipo
-  data: Task
-} & Item
-
-export type ReminderItem = {
-  type: 'reminder' // Discriminante de tipo
-  data: Reminder
-} & Item
-
-export type ImgItem = {
-  type: 'img' // Discriminante de tipo
-  data: Img
-} & Item
-
-export type VideoItem = {
-  type: 'video' // Discriminante de tipo
-  data: Video
-} & Item
+export interface Link {
+  id: number
+  name: string
+  description: string
+  url: string
+  item?: Item
+}

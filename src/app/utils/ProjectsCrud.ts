@@ -1,13 +1,12 @@
-import { ProjectItem } from '../types'
+import { Project } from '../types'
 import { getLocalStorage } from './DocEvents'
 /**
  * Metodo para recuperar los proyectos del servidor
  * @returns Promise<ProjectItem[]> Promesa de lista de proyectos
  */
-export async function getProjects (id: string): Promise<{ msg: string, projects: ProjectItem[] }> {
+export async function getProjects (id: string): Promise<{ msg: string, projects: Project[] }> {
   try {
     const token = getLocalStorage('token')
-    console.log(id)
 
     const projects = await fetch('http://localhost:3001/api/projects/user/' + id, {
       method: 'GET',
@@ -17,40 +16,21 @@ export async function getProjects (id: string): Promise<{ msg: string, projects:
       }
     })
     const projectsJson = await projects.json()
-    console.log(projectsJson)
 
     return projectsJson
   } catch (error) {
     return {
       msg: 'ERROR, PRESENTANDO ARCHIVOS MUCK',
-      projects: [{
-        i: '1',
-        x: 0,
-        y: 0,
-        w: 2,
-        h: 2,
-        type: 'proyect',
-        data: {
-          id: 1,
-          name: 'Project 1',
-          description: 'This is a project description',
-          image: 'https://picsum.photos/1080/720',
-          tags: [
-            'Develpment',
-            'Design',
-            'Marketing'
-          ]
-        }
-      }]
+      projects: []
     }
   }
 }
 
-export async function createProject (project: ProjectItem): Promise<{ msg: string, project: ProjectItem | null }> {
+export async function createProject (project: Omit<Project, 'id' | 'userId' | 'user'>, userId: string): Promise<{ msg: string, project: Project | null }> {
   try {
     const token = getLocalStorage('token')
 
-    const newProject = await fetch('http://localhost:3001/api/projects/', {
+    const newProject = await fetch('http://localhost:3001/api/projects/' + userId, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -59,13 +39,35 @@ export async function createProject (project: ProjectItem): Promise<{ msg: strin
       body: JSON.stringify(project)
     })
     const newProjectJson = await newProject.json()
-    console.log(newProjectJson)
 
     return newProjectJson
   } catch (error) {
     return {
       msg: 'ERROR, PRESENTANDO ARCHIVOS MUCK',
       project: null
+    }
+  }
+}
+
+export async function updateProjects (projects: Project[], id: string): Promise<{ msg: string, projects: Project[] }> {
+  try {
+    const token = getLocalStorage('token')
+
+    const newProjects = await fetch('http://localhost:3001/api/projects/' + id, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: token ?? ''
+      },
+      body: JSON.stringify(projects)
+    })
+    const newProjectsJson = await newProjects.json()
+
+    return newProjectsJson
+  } catch (error) {
+    return {
+      msg: 'ERROR, PRESENTANDO ARCHIVOS MUCK',
+      projects: []
     }
   }
 }
@@ -103,7 +105,6 @@ export async function createProjectTag (tag: { name: string, colorBackground: st
       body: JSON.stringify(tag)
     })
     const newTagJson = await newTag.json()
-    console.log(newTagJson)
 
     return newTagJson
   } catch (error) {

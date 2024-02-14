@@ -18,7 +18,6 @@ export default function AddUserTagsModal ({ dialogRef }: {
       backgroundColor: HTMLInputElement
     }
 
-    console.log(name.value, textColor.value, backgroundColor.value)
     createTag({ name: name.value, colorBackground: backgroundColor.value, colorText: textColor.value }).then((res) => {
       if (res.tag === null) {
         toast.error(res.msg)

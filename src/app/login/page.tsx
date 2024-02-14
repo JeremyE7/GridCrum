@@ -7,9 +7,10 @@ import { FormEvent } from 'react'
 import { useUsers } from '../hooks/useUsers'
 import { Toaster, toast } from 'sonner'
 import { useRouter } from 'next/navigation'
+import { saveLocalStorage } from '../utils/DocEvents'
 
 export default function Login (): JSX.Element {
-  const { loginUser, setUser } = useUsers()
+  const { loginUser } = useUsers()
   const router = useRouter()
 
   function handleSubmit (event: FormEvent<HTMLFormElement>): void {
@@ -17,13 +18,12 @@ export default function Login (): JSX.Element {
     const form = event.target as HTMLFormElement
     const email = form.email.value
     const password = form.password.value
-    console.log({ email, password })
     loginUser({ email, password }).then((user) => {
-      if (user.token === undefined) {
-        toast.error(user.msg)
+      if (user.token === '') {
+        toast.error('User or password incorrect')
       } else {
         toast.success(user.msg)
-        setUser(user.user as { id: string, name: string, email: string, password: string })
+        saveLocalStorage(user.user?.id.toString() ?? '', 'user')
         form.reset()
         router.push('/projects')
       }

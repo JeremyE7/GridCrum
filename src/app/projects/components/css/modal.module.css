@@ -105,3 +105,28 @@
 .modalBigger section{
     width: 500px;
 }
+
+.addProjectTagModel form select{
+    padding: 10px;
+    border-radius: 10px;
+    border: none;
+    background-color: var(--backlite2);
+    color: var(--text);
+    gap: 10px;
+    scrollbar-width: thin;
+}
+
+.addProjectTagModel form select option{
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+}
+
+.addProjectTagModel form textarea{
+    padding: 10px;
+    border-radius: 10px;
+    border: none;
+    background-color: var(--backlite2);
+    color: var(--text);
+    resize: none;
+}

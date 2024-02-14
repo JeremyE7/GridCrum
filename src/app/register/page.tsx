@@ -22,7 +22,6 @@ export default function Register (): JSX.Element {
     const password = data.get('password')
     registerUser({ name: username as string, email: email as string, password: password as string }).then((data) => {
       if ('error' in data) {
-        console.log(data.error)
         toast.error(data.error)
       } else {
         toast.success('Usuario registrado')

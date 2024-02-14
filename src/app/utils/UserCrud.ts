@@ -1,6 +1,6 @@
 import { User } from '../types'
 
-export async function register (newUser: User): Promise<{ msg: string, user: User, error?: string }> {
+export async function register (newUser: { name: string, email: string, password: string }): Promise<{ msg: string, user: User, error?: string }> {
   const register = await fetch('http://localhost:3001/api/user', {
     method: 'POST',
     headers: {
@@ -10,7 +10,6 @@ export async function register (newUser: User): Promise<{ msg: string, user: Use
   })
 
   const registerUser = await register.json()
-  console.log(registerUser)
   return registerUser
 }
 

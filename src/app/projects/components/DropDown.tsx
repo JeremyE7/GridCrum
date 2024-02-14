@@ -7,16 +7,20 @@ import Divider from '@/app/components/Divider'
 import AddTagIcon from '@/app/components/AddTagIcon'
 import React from 'react'
 import { useModalsStore } from '@/app/utils/store/ModalsStore'
+import { useProjects } from '@/app/hooks/useProyects'
 
 export default function DropDown (): JSX.Element {
   const { openModal, modalAddUserTag, modalAddProject } = useModalsStore()
+  const { getTags } = useProjects()
 
   const handleShowAddUserTagModal = (): void => {
     openModal(modalAddUserTag.current)
   }
 
   const handleShowAddProjectModal = (): void => {
-    openModal(modalAddProject.current)
+    getTags().then(() => {
+      openModal(modalAddProject.current)
+    })
   }
 
   return (

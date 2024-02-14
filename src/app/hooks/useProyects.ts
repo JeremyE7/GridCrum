@@ -1,37 +1,44 @@
 import { useEffect } from 'react'
 import { useProjectsStore } from '../utils/store/ProjectsStore'
-import { ProjectItem } from '../types'
 import { createProjectTag, createProject, getUserTags } from '../utils/ProjectsCrud'
-import { useUserStore } from '../utils/store/userStore'
+import { getLocalStorage } from '../utils/DocEvents'
+import { Project } from '../types'
 
-/**
- * Hook para recuperar los proyectos del store
- * @returns
- * projects: ProjectItem[] Lista de Proyectos
- * addProject: (project: ProjectItem) => void Agrega un proyecto a la lista
- * updateProjects: (projects: ProjectItem[]) => void Actualiza la lista de proyectos
- */
-export const useProjects = (): { projects: ProjectItem[], addProject: (project: ProjectItem) => void, updateProjects: (projects: ProjectItem[]) => void, createTag: (tag: { name: string, colorBackground: string, colorText: string }) => Promise<{ msg: string, tag: any }>, createProject: (project: ProjectItem, userId: string) => Promise<{ msg: string, project: ProjectItem | null }>, getTags: () => Promise<any> } => {
-  // Recuperamos los metodos del store
-  const { projects, getProjects, addProject, updateProjects } = useProjectsStore()
-  const { user } = useUserStore()
+export interface Tag {
+  _id: string
+  name: string
+  colorBackground: string
+  colorText: string
+}
+
+export const useProjects = (): {
+  projects: Project[]
+  addProject: (project: Project) => void
+  updateProjects: (projects: Project[], userId: string) => Promise<void>
+  createTag: (tag: { name: string, colorBackground: string, colorText: string }) => Promise<{ msg: string, tag: any }>
+  createProject: (project: Omit<Project, 'id' | 'userId' | 'user'>, userId: string) => Promise<{ msg: string, project: Project | null }>
+  getTags: () => Promise<void>
+  tags: Tag[]
+  getProjects: (id: string) => Promise<void>
+} => {
+  // Recuperamos los métodos del store
+  const { projects, getProjects, addProject, updateProjects, setTags, tags } = useProjectsStore()
+  const user = getLocalStorage('user') ?? ''
 
   useEffect(() => {
-    console.log(user)
-
-    getProjects(user.id)
+    getProjects(user)
   }, [])
 
   const createTag = async (tag: { name: string, colorBackground: string, colorText: string }): Promise<{ msg: string, tag: any }> => {
-    const tagAux = await createProjectTag(tag, user.id)
+    const tagAux = await createProjectTag(tag, user)
     return tagAux
   }
 
-  const getTags = async (): Promise<any> => {
-    const id = user.id
+  const getTags = async (): Promise<void> => {
+    const id = user
     const tags = await getUserTags(id)
-    return tags
+    setTags(tags.tags) // Especificar el tipo para 'tags'
   }
 
-  return { projects, addProject, updateProjects, createTag, createProject, getTags }
+  return { projects, addProject, updateProjects, createTag, createProject, getTags, tags, getProjects }
 }
