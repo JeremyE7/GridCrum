@@ -2,6 +2,7 @@ type state = 'toDo' | 'inProgress' | 'done'
 type typeOfItem = 'proyect' | 'spring' | 'task' | 'reminder' | 'img' | 'video' | 'audio' | 'link'
 
 export interface Item {
+  id: number
   i: string
   x: number
   y: number
