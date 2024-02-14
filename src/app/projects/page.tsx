@@ -2,6 +2,7 @@
 
 import React from 'react'
 import styles from './page.module.css'
+import gridItemStyles from './components/css/gridItem.module.css'
 import '/node_modules/react-grid-layout/css/styles.css'
 import '/node_modules/react-resizable/css/styles.css'
 import { Responsive, WidthProvider } from 'react-grid-layout'
@@ -10,11 +11,16 @@ import { useProjects } from '../hooks/useProyects'
 import ProjectCard from './components/ProjectCard'
 import AddUserTagsModal from './components/AddUserTagsModal'
 import { useModalsStore } from '../utils/store/ModalsStore'
+import './layout.css'
+import { getLocalStorage } from '../utils/DocEvents'
+import { redirect } from 'next/navigation'
+import CreateProjectModal from './components/CreateProjectModal'
 
 const ResponsiveGridLayout = WidthProvider(Responsive)
 
 export default function Home (): JSX.Element {
   const { projects, updateProjects } = useProjects()
+  if (getLocalStorage('token') === null) redirect('/')
 
   const handleItemMoved = (
     newItem: Item[]
@@ -38,7 +44,7 @@ export default function Home (): JSX.Element {
     updateProjects(updatedProjects)
   }
 
-  const { modalAddUserTag } = useModalsStore()
+  const { modalAddUserTag, modalAddProject } = useModalsStore()
 
   return (
     <main>
@@ -52,13 +58,14 @@ export default function Home (): JSX.Element {
       >
         {projects.map((project: ProjectItem, index) => {
           return (
-            <section key={project.i} className={styles.gridItem}>
+            <section key={project.i} className={gridItemStyles.gridItem}>
               <ProjectCard project={project} />
             </section>
           )
         })}
       </ResponsiveGridLayout>
       <AddUserTagsModal dialogRef={modalAddUserTag} />
+      <CreateProjectModal dialogRef={modalAddProject} />
     </main>
   )
 }

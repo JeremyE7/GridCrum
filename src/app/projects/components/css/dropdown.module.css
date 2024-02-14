@@ -1,0 +1,126 @@
+
+.dropdown {
+    position: absolute;
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background-color: var(--backlite2);
+    padding: 10px;
+    width: 110px;
+    z-index: 3;
+    left: 20px;
+    border-radius: 20px;
+    box-shadow: 7px 0px 5px 0px rgba(0, 0, 0, 0.25);
+    -webkit-box-shadow: 7px 0px 5px 0px rgba(0, 0, 0, 0.25);
+    -moz-box-shadow: 7px 0px 5px 0px rgba(0, 0, 0, 0.25);
+}
+
+.dropdown ul li button{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+}
+
+.dropdown ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.dropdown button {
+    background-color: var(--backlite2);
+    color: var(--primary);
+    border-radius: 10px;
+    padding: 10px;
+    font-size: 0.7rem;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    display: flex;
+}
+
+.hamburger input:checked~.dropdown {
+    display: block;
+    animation: showDropdown 0.2s ease both;
+}
+
+@keyframes showDropdown {
+    0% {
+        scale: 0;
+        opacity: 0;
+        top: -20px;
+        left: -20px;
+    }
+
+    100% {
+        scale: 1;
+        opacity: 1;
+        top: 45px;
+        left: 20px;
+    }
+
+}
+
+.dropdown button:hover {
+    background-color: var(--backlite);
+}
+
+.dropdown button:active {
+    background-color: var(--backlite);
+    transform: scale(0.9);
+}
+
+
+.hamburger {
+    cursor: pointer;
+    background-color: var(--backlite2);
+    border-radius: 50%;
+    height: 40px;
+    padding: 10px;
+    box-shadow: 7px 0px 5px 0px rgba(0, 0, 0, 0.25);
+    -webkit-box-shadow: 7px 0px 5px 0px rgba(0, 0, 0, 0.25);
+    -moz-box-shadow: 7px 0px 5px 0px rgba(0, 0, 0, 0.25);
+}
+
+.hamburger input {
+    display: none;
+}
+
+.hamburger svg {
+    /* The size of the SVG defines the overall size */
+    height: 2.2em;
+    /* Define the transition for transforming the SVG */
+    transition: transform 600ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.line {
+    fill: none;
+    stroke: white;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-width: 3;
+    /* Define the transition for transforming the Stroke */
+    transition: stroke-dasharray 600ms cubic-bezier(0.4, 0, 0.2, 1),
+        stroke-dashoffset 600ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.lineTopBottom {
+    stroke-dasharray: 12 63;
+}
+
+.hamburger input:checked+svg {
+    transform: rotate(-45deg);
+}
+
+.hamburger input:checked+svg .lineTopBottom {
+    stroke-dasharray: 20 300;
+    stroke-dashoffset: -32.42;
+}
+
+
+.hamburger:focus {
+    outline: none;
+}

@@ -1,0 +1,107 @@
+.addProjectTagModel section{
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    padding: 20px;
+    background-color: var(--backlite);
+}
+
+.addProjectTagModel{
+    padding: 0px;
+    background-color: var(--backlite);
+    color: var(--text);
+    border-radius: 20px;
+    border: none;
+    animation: showModal 0.2s ease both;
+}
+
+@keyframes showModal {
+    0% {
+        opacity: 0;
+        transform: scale(0.1);
+    }
+    100%{
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.addProjectTagModel form fieldset{
+    margin-bottom: 20px;
+    display: grid;
+    grid-template-columns: 0.5fr auto;
+    gap: 20px;
+    border-color: var(--primary);
+    border-radius: 10px;
+    align-items: center;
+}
+
+.addProjectTagModel form fieldset input[type=text]{
+    padding: 10px;
+    border-radius: 10px;
+    border: none;
+    background-color: var(--backlite2);
+    color: var(--text);
+}
+
+.addProjectTagModel form fieldset input[type=text]:focus{
+    outline: none;
+}
+
+.addProjectTagModel form fieldset input[type=color]{
+    border-radius: 10px;
+    border: none;
+    background-color: var(--backlite2);
+    color: var(--text);
+}
+
+.addProjectTagModel legend{
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.addProjectTagModel form fieldset label{
+    font-size: 0.9rem;
+    font-weight: bold;
+}
+
+.addProjectTagModel form button{
+    background-color: var(--backlite2);
+    color: var(--primary);
+    border-radius: 10px;
+    padding: 10px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+
+}
+
+.addProjectTagModel form button:hover{
+    transform: scale(1.1);
+}
+
+.addProjectTagModel form button:active{
+    transform: scale(0.9);
+}
+
+.addProjectTagModel::backdrop{
+    background-color: rgba(0, 0, 0, 0.733);
+}
+
+.addProjectTagModel form button[type=button]{
+    background-color: var(--alert);
+    color: var(--text);
+    border-radius: 10px;
+    padding: 10px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+.modalBigger section{
+    width: 500px;
+}

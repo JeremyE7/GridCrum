@@ -1,0 +1,42 @@
+
+body {
+    display: grid;
+    grid-template-columns: 0.1fr 0.5fr 1fr 1fr;
+    grid-template-rows: 70px 2fr 2fr 2fr;
+    grid-template-areas: "Navbar Navbar . ."
+        "Content Content Content Content"
+        "Content Content Content Content"
+        "Content Content Content Content";
+    min-height: 100vh;
+    padding: 10px;
+    margin: 0;
+    background-color: var(--background);
+    background-image: linear-gradient(#6440501b 1px, transparent 1px), linear-gradient(to right, #6440501b 1px, var(--background) 1px);
+    background-size: 20px 20px;
+}
+
+main {
+    grid-area: Content;
+    padding: 1rem;
+    margin-top: -100px;
+}
+
+header {
+    grid-area: Navbar;
+    margin: 0px 20px;
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    position: fixed;
+    z-index: 2;
+    top: 25px;
+}
+
+h1 {
+    background: #150513;
+    background: linear-gradient(to right, var(--text) 5%, var(--primary) 10%, var(--accent) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+
+}

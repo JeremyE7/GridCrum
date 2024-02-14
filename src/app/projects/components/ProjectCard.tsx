@@ -6,10 +6,10 @@ export default function ProjectCard ({ project }: { project: ProjectItem }): JSX
     <>
       <img src={project.data.image} alt={project.data.description} />
       <footer>
+        <h1>
+          {project.data.name}
+        </h1>
         <span>
-          <h1>
-            {project.data.name}
-          </h1>
           {project.data.tags.map((tag, index) => (
             <Chip key={tag}>
               {tag}

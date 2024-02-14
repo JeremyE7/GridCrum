@@ -1,4 +1,4 @@
-import styles from '../page.module.css'
+import styles from './css/breadcrum.module.css'
 
 export default function BreadCrum (): JSX.Element {
   return (

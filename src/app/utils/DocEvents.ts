@@ -11,3 +11,11 @@ export function addKeyEscapeListener (callback: () => void): void {
     })
   }
 }
+
+export function saveLocalStorage (value: string, key: string): void {
+  window.localStorage.setItem(key, value)
+}
+
+export function getLocalStorage (key: string): string | null {
+  return window.localStorage.getItem(key)
+}
