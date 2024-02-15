@@ -6,6 +6,7 @@ import { Gantt, Task, EventOption, StylingOption, ViewMode, DisplayOption } from
 import 'gantt-task-react/dist/index.css'
 import React from 'react'
 import './table.css'
+import { useParams, useRouter } from 'next/navigation'
 
 export function getStartEndDateForProject (tasks: Task[], projectId: string) {
   const projectTasks = tasks.filter(t => t.project === projectId)
@@ -125,6 +126,8 @@ export default function ProjectPage (): JSX.Element {
   const [view, setView] = React.useState<ViewMode>(ViewMode.Day)
   const [isChecked, setIsChecked] = React.useState(true)
   const [tasks, setTasks] = React.useState<Task[]>(initTasks())
+  const router = useRouter()
+  const { id } = useParams()
 
   let columnWidth = 65
   if (view === ViewMode.Year) {
@@ -168,7 +171,9 @@ export default function ProjectPage (): JSX.Element {
   }
 
   const handleDblClick = (task: Task) => {
-    alert('On Double Click event Id:' + task.id)
+    console.log(task.id)
+    if (task.type === 'project' || task.type === 'milestone') return
+    router.push('/projects/' + String(id) + '/' + String(task.id.split(' ')[1]))
   }
 
   const handleClick = (task: Task) => {

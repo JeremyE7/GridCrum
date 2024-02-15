@@ -8,10 +8,12 @@ import AddTagIcon from '@/app/components/AddTagIcon'
 import React from 'react'
 import { useModalsStore } from '@/app/utils/store/ModalsStore'
 import { useProjects } from '@/app/hooks/useProyects'
+import { useRouter } from 'next/navigation'
 
 export default function DropDown (): JSX.Element {
   const { openModal, modalAddUserTag, modalAddProject } = useModalsStore()
   const { getTags } = useProjects()
+  const router = useRouter()
 
   const handleShowAddUserTagModal = (): void => {
     openModal(modalAddUserTag.current)
@@ -21,6 +23,13 @@ export default function DropDown (): JSX.Element {
     getTags().then(() => {
       openModal(modalAddProject.current)
     })
+  }
+
+  const handleCloseSesion = (): void => {
+    console.log('Cerrar Sesión')
+    localStorage.removeItem('token')
+    localStorage.removeItem('user')
+    router.push('/login')
   }
 
   return (
@@ -39,6 +48,10 @@ export default function DropDown (): JSX.Element {
           </li>
           <li>
             <button><EditIcon /> Editar Proyecto</button>
+          </li>
+          <Divider />
+          <li>
+            <button onClick={handleCloseSesion}>Cerrar Sesión</button>
           </li>
         </ul>
       </nav>

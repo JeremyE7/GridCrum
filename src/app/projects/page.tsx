@@ -65,7 +65,7 @@ export default function Home (): JSX.Element {
       >
         {projects.map((project: Project, index) => {
           return (
-            <section key={project.id} className={gridItemStyles.gridItem} onDoubleClick={() => handleOpenProject(project.id)}>
+            <section key={project.id} className={gridItemStyles.gridItem} style={{ zIndex: '9999' }} onDoubleClick={() => handleOpenProject(project.id)}>
               <ProjectCard project={project} />
             </section>
           )
