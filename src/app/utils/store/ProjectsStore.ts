@@ -1,4 +1,4 @@
-import { Project } from '@/app/types'
+import { Project, Spring } from '@/app/types'
 import { create } from 'zustand'
 import { getProjects, updateProjects } from '../ProjectsCrud'
 import { Tag } from '@/app/hooks/useProyects'
@@ -13,6 +13,7 @@ interface ProjectsStore {
   addProject: (project: Project) => void
   updateProjects: (projects: Project[], userId: string) => Promise<void>
   setTags: (tags: Tag[]) => void
+  addSpring: (spring: Spring, projectId: string) => void
 }
 
 /**
@@ -49,5 +50,13 @@ export const useProjectsStore = create<ProjectsStore>((set) => ({
     set({ projects: updatedProjects.projects })
   },
   tags: [],
-  setTags: (tags: Tag[]) => set({ tags })
+  setTags: (tags: Tag[]) => set({ tags }),
+  addSpring: (spring: Spring, projectId: string) => set((state) => {
+    const project = state.projects.find(project => project.id.toString() === projectId.toString())
+    if (project != null) {
+      project.springs.push(spring)
+    }
+    console.log(state.projects)
+    return state // Return the updated state
+  })
 }))

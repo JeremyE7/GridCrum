@@ -1,8 +1,8 @@
 import { useEffect } from 'react'
 import { useProjectsStore } from '../utils/store/ProjectsStore'
-import { createProjectTag, createProject, getUserTags } from '../utils/ProjectsCrud'
+import { createProjectTag, createProject, getUserTags, createSpring, createTask } from '../utils/ProjectsCrud'
 import { getLocalStorage } from '../utils/DocEvents'
-import { Project } from '../types'
+import { Project, Spring, Task } from '../types'
 
 export interface Tag {
   _id: string
@@ -20,6 +20,8 @@ export const useProjects = (): {
   getTags: () => Promise<void>
   tags: Tag[]
   getProjects: (id: string) => Promise<void>
+  addSpringProject: (spring: Omit<Spring, 'id' | 'tasks' | 'proyect'>) => Promise<{ msg: string | { error: string, message: string }, spring: Spring | null }>
+  addTaskSpring: (task: Omit<Task, 'id' | 'spring' | 'board' | 'reminders' | 'tags' | 'items'>) => Promise<{ msg: string | { error: string, message: string }, task: Task | null }>
 } => {
   // Recuperamos los métodos del store
   const { projects, getProjects, addProject, updateProjects, setTags, tags } = useProjectsStore()
@@ -40,5 +42,18 @@ export const useProjects = (): {
     setTags(tags.tags) // Especificar el tipo para 'tags'
   }
 
-  return { projects, addProject, updateProjects, createTag, createProject, getTags, tags, getProjects }
+  const addSpringProject = async (spring: Omit<Spring, 'id' | 'tasks' | 'proyect'>): Promise<{ msg: string, spring: Spring | null }> => {
+    const springCreated = await createSpring(spring)
+    await getProjects(user)
+
+    return springCreated
+  }
+
+  const addTaskSpring = async (task: Omit<Task, 'id' | 'spring' | 'board' | 'reminders' | 'tags' | 'items'>): Promise<{ msg: string, task: Task | null }> => {
+    const taskCreated = await createTask(task)
+    await getProjects(user)
+    return taskCreated
+  }
+
+  return { projects, addProject, updateProjects, createTag, createProject, getTags, tags, getProjects, addSpringProject, addTaskSpring }
 }

@@ -1,49 +1,12 @@
-table cell{
-    background-color: var(--backlite) !important;
+.gantt-wrap{
+  min-height: 400px;
 }
 
-.gantt-table {
-    background-color: red !important;
-  }
+.gantt-controls-wrap button, .gantt-controls-wrap div{
+  background-color: var(--accent);
+  border-radius: 100px;
+}
 
-._3eULf {
-    background-color: var(--backlite) !important;
-    border-color: #222 ;
-    border-radius: 20px;
-  }
-
-  ._3ZbQT {
-    background-color: var(--backlite) !important;
-    border-color: #222 ;
-    border-radius: 20px;
-  }
-
-  ._3lLk3{
-    background-color: var(--backlite) !important;
-    border-color: #222 ;
-  }
-
-  ._2eZzQ{
-    background-color: var(--backlite) !important;
-    border-color: #222 ;
-  }
-
-  ._CZjuD{
-    background-color: var(--backlite) !important;
-    border-color: #222 ;
-  }
-
-  ._2dZTy{
-    background-color: var(--backlite) !important;
-    border-color: #222 ;
-  }
-
-  ._CZjuD{
-    background-color: var(--backlite) !important;
-    border-color: #222 ;
-  }
-
-  .calendar{
-    background-color: var(--backlite) !important;
-    border-color: #222 ;
-  }
+.gantt-tree-list-item{
+  color: var(--text);
+}

@@ -5,6 +5,12 @@ import styles from './css/dropdown.module.css'
 import DropDown from './DropDown'
 import { useRef } from 'react'
 import { useOnClickOutside } from 'usehooks-ts'
+import { useModalsStore } from '@/app/utils/store/ModalsStore'
+import CreateProjectModal from './CreateProjectModal'
+import AddSpring from './AddSpringModal'
+import AddUserTagsModal from './AddUserTagsModal'
+import AddTask from './AddTaskModal'
+import AddItem from './AddItemModal'
 
 export default function Hamburguer (): JSX.Element {
   const hamburguerRef = useRef<HTMLLabelElement>(null)
@@ -19,6 +25,8 @@ export default function Hamburguer (): JSX.Element {
     checkbox.checked = false
   })
 
+  const { modalAddUserTag, modalAddProject, modalAddSpring, modalAddTask, modalAddItem } = useModalsStore()
+
   return (
     <>
       <label className={styles.hamburger} ref={hamburguerRef} htmlFor='hamburguer-checkbox'>
@@ -29,6 +37,11 @@ export default function Hamburguer (): JSX.Element {
         </svg>
         <DropDown />
       </label>
+      <AddSpring dialogRef={modalAddSpring} />
+      <AddUserTagsModal dialogRef={modalAddUserTag} />
+      <CreateProjectModal dialogRef={modalAddProject} />
+      <AddTask dialogRef={modalAddTask} />
+      <AddItem dialogRef={modalAddItem} />
     </>
   )
 }

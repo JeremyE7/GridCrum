@@ -1,3 +1,15 @@
+.grid {
+    min-height: 80vh;
+    background-color: var(--backlite2);
+    box-shadow: 1px 10px 5px 0px rgba(0, 0, 0, 0.75);
+    -webkit-box-shadow: 1px 10px 5px 0px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 1px 10px 5px 0px rgba(0, 0, 0, 0.75);
+    border-radius: 20px;
+    margin-top: 100px;
+    padding: 20px;
+    scrollbar-width: thin;
+}
+
 .gridItem {
     background-color: var(--backlite);
     border-radius: 10px;
@@ -26,32 +38,22 @@
 
 .gridItem img {
     width: 100%;
-    height: 50%;
-    object-fit: cover;
+    height: 100%;
+    object-fit: fill;
     border-radius: 10px;
 }
 
-.gridItem footer {
+.gridItem video{
     width: 100%;
-    height: 50%;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: flex-start;
-    padding: 0px 10px;
-    margin-top: 10px;
-    box-sizing: border-box;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+
 }
 
-.gridItem footer p {
-    padding: 0;
-}
-
-.gridItem footer span {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 5px;
+.gridItem a{
+    text-decoration: none;
+    color: var(--text);
 }
 
 @container gridItem (max-width: 100px) {

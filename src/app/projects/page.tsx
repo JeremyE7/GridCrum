@@ -1,6 +1,6 @@
 'use client'
 
-import React from 'react'
+import React, { useRef } from 'react'
 import styles from './page.module.css'
 import gridItemStyles from './components/css/gridItem.module.css'
 import '/node_modules/react-grid-layout/css/styles.css'
@@ -9,12 +9,10 @@ import { Layout, Responsive, WidthProvider } from 'react-grid-layout'
 import { Project } from '../types'
 import { useProjects } from '../hooks/useProyects'
 import ProjectCard from './components/ProjectCard'
-import AddUserTagsModal from './components/AddUserTagsModal'
-import { useModalsStore } from '../utils/store/ModalsStore'
+
 import './layout.css'
 import { getLocalStorage } from '../utils/DocEvents'
 import { redirect, useRouter } from 'next/navigation'
-import CreateProjectModal from './components/CreateProjectModal'
 
 const ResponsiveGridLayout = WidthProvider(Responsive)
 
@@ -22,10 +20,22 @@ export default function Home (): JSX.Element {
   const { projects, updateProjects } = useProjects()
   if (getLocalStorage('token') === null || getLocalStorage('user') === null) redirect('/')
   const router = useRouter()
+  const clickRef = useRef<number>(0)
 
   const handleItemMoved = (
-    newItem: Layout[]
+    newItem: Layout[],
+    e: any
   ): void => {
+    const currentTime = new Date().getTime()
+    const timeDiff = currentTime - clickRef.current
+
+    if (timeDiff < 300) {
+      // Doble clic detectado
+      handleOpenProject(parseInt(e.i))
+    } else {
+      // Un solo clic, actualiza la referencia de tiempo
+      clickRef.current = currentTime
+    }
     // Actualiza el estado solo después de que se ha completado el movimiento
     const updatedProjects = projects.map((project) => {
       const itemMoved = newItem.find((item) => item.i === project.id.toString()) // Update the type of itemMoved
@@ -51,8 +61,6 @@ export default function Home (): JSX.Element {
     router.push(`/projects/${projectId}`)
   }
 
-  const { modalAddUserTag, modalAddProject } = useModalsStore()
-
   return (
     <main>
       <ResponsiveGridLayout
@@ -65,14 +73,13 @@ export default function Home (): JSX.Element {
       >
         {projects.map((project: Project, index) => {
           return (
-            <section key={project.id} className={gridItemStyles.gridItem} style={{ zIndex: '9999' }} onDoubleClick={() => handleOpenProject(project.id)}>
+            <section key={project.id} className={gridItemStyles.gridItem}>
               <ProjectCard project={project} />
             </section>
           )
         })}
       </ResponsiveGridLayout>
-      <AddUserTagsModal dialogRef={modalAddUserTag} />
-      <CreateProjectModal dialogRef={modalAddProject} />
+
     </main>
   )
 }

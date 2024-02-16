@@ -130,3 +130,19 @@
     color: var(--text);
     resize: none;
 }
+
+.addProjectTagModel form input[type=date]{
+    padding: 10px;
+    border-radius: 10px;
+    border: none;
+    background-color: var(--backlite2);
+    color: var(--text);
+}
+
+.addProjectTagModel form input[type=url]{
+    padding: 10px;
+    border-radius: 10px;
+    border: none;
+    background-color: var(--backlite2);
+    color: var(--text);
+}

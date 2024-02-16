@@ -58,10 +58,6 @@ export interface TaskTag {
 
 export interface Task {
   id: number
-  x: number
-  y: number
-  w: number
-  h: number
   name: string
   description: string
   startDate: Date
@@ -69,9 +65,9 @@ export interface Task {
   state: string
   springId: number
   spring: Spring
-  board?: Board
   reminders: Reminder[]
   tags: TaskTag[]
+  items: Item[]
 }
 
 export interface Reminder {
@@ -85,34 +81,20 @@ export interface Reminder {
   task: Task
 }
 
-export interface Board {
-  id: number
-  name: string
-  description: string
-  startDate: Date
-  endDate: Date
-  state: string
-  items: Item[]
-  task: Task
-  taskId: number
-}
-
 export interface Item {
   id: number
   x: number
   y: number
   w: number
   h: number
-  board: Board
-  boardId: number
   imgId?: number
   videoId?: number
-  audioId?: number
-  linkId?: number
-  link?: Link
-  audio?: Audio
   video?: Video
   img?: Img
+  documentId?: number
+  document?: DocumentType
+  taskId: number
+  task: Task
 }
 
 export interface Img {
@@ -140,6 +122,14 @@ export interface Audio {
 }
 
 export interface Link {
+  id: number
+  name: string
+  description: string
+  url: string
+  item?: Item
+}
+
+export interface DocumentType {
   id: number
   name: string
   description: string

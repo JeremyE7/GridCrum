@@ -7,8 +7,18 @@
     border-radius: 20px;
     margin-top: 100px;
     padding: 20px;
+    scrollbar-width: thin;
 }
 
-.gantt-table {
-    background-color: red !important;
-  }
+.chart{
+    border-radius: 10px;
+    scrollbar-width: thin;
+    scrollbar-color: var(--primary) var(--backlite);
+    scrollbar-arrow-color: var(--primary);
+    --gantt-border-color-base: #22222254;
+    --gantt-background-main: var(--backlite);
+    --gantt-background-second: var(--backlite2);
+    --gantt-control-element-bg: var(--primary);
+    z-index: 1 !important;
+}
+

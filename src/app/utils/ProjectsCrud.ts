@@ -1,4 +1,4 @@
-import { Project } from '../types'
+import { Project, Spring, Task } from '../types'
 import { getLocalStorage } from './DocEvents'
 /**
  * Metodo para recuperar los proyectos del servidor
@@ -16,6 +16,7 @@ export async function getProjects (id: string): Promise<{ msg: string, projects:
       }
     })
     const projectsJson = await projects.json()
+    console.log(projectsJson)
 
     return projectsJson
   } catch (error) {
@@ -113,4 +114,38 @@ export async function createProjectTag (tag: { name: string, colorBackground: st
       tag: null
     }
   }
+}
+
+export async function createSpring (spring: Omit<Spring, 'id' | 'tasks' | 'proyect'>): Promise<{ msg: string, spring: Spring | null }> {
+  const token = getLocalStorage('token')
+  const createSpring = await fetch('http://localhost:3001/api/project/spring', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: token ?? ''
+    },
+    body: JSON.stringify(spring)
+  })
+
+  const springCreated = await createSpring.json()
+  console.log(springCreated)
+
+  return springCreated
+}
+
+export async function createTask (task: Omit<Task, 'id' | 'spring' | 'board' | 'reminders' | 'tags' | 'items'>): Promise<{ msg: string, task: Task }> {
+  const token = getLocalStorage('token')
+  const createTask = await fetch('http://localhost:3001/api/project/spring/task', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: token ?? ''
+    },
+    body: JSON.stringify(task)
+  })
+
+  const taskCreated = await createTask.json()
+  console.log(taskCreated)
+
+  return taskCreated
 }
