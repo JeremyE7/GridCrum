@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useRef } from 'react'
+import React, { useEffect, useRef } from 'react'
 import styles from './page.module.css'
 import gridItemStyles from './components/css/gridItem.module.css'
 import '/node_modules/react-grid-layout/css/styles.css'
@@ -18,8 +18,9 @@ const ResponsiveGridLayout = WidthProvider(Responsive)
 
 export default function Home (): JSX.Element {
   const { projects, updateProjects } = useProjects()
-  if (getLocalStorage('token') === null || getLocalStorage('user') === null) redirect('/')
   const router = useRouter()
+
+  if (projects === undefined) redirect('/')
   const clickRef = useRef<number>(0)
 
   const handleItemMoved = (

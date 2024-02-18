@@ -2,9 +2,19 @@
   min-height: 400px;
 }
 
+.gantt-controls-wrap{
+  --gantt-text-color: var(--primary);
+}
+
 .gantt-controls-wrap button, .gantt-controls-wrap div{
-  background-color: var(--accent);
+  background-color: var(--backlite2);
+  color: var(--primary);
   border-radius: 100px;
+}
+
+.gantt-controls-wrap select{
+  color: var(--primary) !important;
+  font-weight: bold;
 }
 
 .gantt-tree-list-item{

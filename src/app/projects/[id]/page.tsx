@@ -9,7 +9,6 @@ import { Gantt, GanttDataType } from 'react-virtual-gantt'
 import dayjs from 'dayjs'
 import { useProjects } from '@/app/hooks/useProyects'
 import { redirect, useParams, useRouter } from 'next/navigation'
-import { getLocalStorage } from '@/app/utils/DocEvents'
 import { getRandomGanttData } from './mockData'
 
 const mockData = getRandomGanttData(
@@ -23,7 +22,7 @@ export default function ProjectPage (): JSX.Element {
   const router = useRouter()
   const { id } = useParams()
   const { projects } = useProjects()
-  if (getLocalStorage('token') === null || getLocalStorage('user') === null) redirect('/')
+  if (projects === undefined) redirect('/')
   const project = projects.find((project) => project.id.toString() === id.toString())
 
   const handleBarChange = (bar: any) => {

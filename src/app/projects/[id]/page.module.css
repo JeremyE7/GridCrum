@@ -1,13 +1,9 @@
 .grid {
     min-height: 50vh;
-    background-color: var(--backlite2);
-    box-shadow: 1px 10px 5px 0px rgba(0, 0, 0, 0.75);
-    -webkit-box-shadow: 1px 10px 5px 0px rgba(0, 0, 0, 0.75);
-    -moz-box-shadow: 1px 10px 5px 0px rgba(0, 0, 0, 0.75);
-    border-radius: 20px;
     margin-top: 100px;
     padding: 20px;
     scrollbar-width: thin;
+    background: transparent
 }
 
 .chart{
@@ -15,10 +11,14 @@
     scrollbar-width: thin;
     scrollbar-color: var(--primary) var(--backlite);
     scrollbar-arrow-color: var(--primary);
-    --gantt-border-color-base: #22222254;
-    --gantt-background-main: var(--backlite);
+    --gantt-border-color-base: #0000005b;
+    --gantt-background-main: linear-gradient(to bottom, var(--backlite2) 0%, var(--primary) 100%);
     --gantt-background-second: var(--backlite2);
     --gantt-control-element-bg: var(--primary);
     z-index: 1 !important;
+    box-shadow: 1px 10px 5px 0px rgba(0, 0, 0, 0.75);
+    -webkit-box-shadow: 1px 10px 5px 5px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 1px 10px 5px 5px rgba(0, 0, 0, 0.75);
+    margin-top: 10px;
 }
 

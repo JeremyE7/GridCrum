@@ -17,5 +17,6 @@ export function saveLocalStorage (value: string, key: string): void {
 }
 
 export function getLocalStorage (key: string): string | null {
-  return window.localStorage.getItem(key)
+  const item = window.localStorage.getItem(key)
+  return item
 }

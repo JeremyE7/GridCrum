@@ -25,3 +25,18 @@ export async function login (user: { email: string, password: string }): Promise
   const loginUser = await login.json()
   return loginUser
 }
+
+export async function validateToken (token: string): Promise<{ user: User, msg: string }> {
+  const validate = await fetch('http://localhost:3001/api/user/validate', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `${token}`
+    }
+  })
+
+  const validateUser = await validate.json()
+  console.log('validateUser', validateUser)
+
+  return validateUser
+}

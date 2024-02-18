@@ -5,16 +5,18 @@ import styles from './page.module.css'
 import '/node_modules/react-grid-layout/css/styles.css'
 import '/node_modules/react-resizable/css/styles.css'
 import { Layout, Responsive, WidthProvider } from 'react-grid-layout'
-import { getLocalStorage } from '@/app/utils/DocEvents'
 import { redirect, useParams } from 'next/navigation'
 import { useRef } from 'react'
+import { useProjects } from '@/app/hooks/useProyects'
 
 const ResponsiveGridLayout = WidthProvider(Responsive)
 
 export default function TaskPage (): JSX.Element {
   const { getItems, updateNewItems } = useItems()
   const { taskId } = useParams()
-  if (getLocalStorage('user') === '') redirect('/')
+  const { projects } = useProjects()
+  if (projects === undefined) redirect('/')
+
   const items = getItems(taskId.toString())
   console.log('items', items)
   const clickRef = useRef<number>(0)
