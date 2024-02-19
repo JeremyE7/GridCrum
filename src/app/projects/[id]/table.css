@@ -10,6 +10,9 @@
   background-color: var(--backlite2);
   color: var(--primary);
   border-radius: 100px;
+  box-shadow: 1px 10px 5px 0px rgba(0, 0, 0, 0.164);     
+    -webkit-box-shadow: 1px 10px 5px 0px rgba(0, 0, 0, 0.164);
+    -moz-box-shadow: 1px 10px 5px 0px rgba(0, 0, 0, 0.1.64);
 }
 
 .gantt-controls-wrap select{

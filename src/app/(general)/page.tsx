@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import styles from './page.module.css'
-import AnimatedBackground from './components/AnimatedBackground'
+import AnimatedBackground from '../components/AnimatedBackground'
 
 export default function Home (): JSX.Element {
   return (

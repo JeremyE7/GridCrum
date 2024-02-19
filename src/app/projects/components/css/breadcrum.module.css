@@ -19,7 +19,21 @@
     content: "/";
 }
 
-.breadcrumb a {
+.breadcrumb a, .breadcrumb span {
     text-decoration: none;
-    color: var(--text);
+    background: linear-gradient(to right,  var(--primary) 10%, var(--accent) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.breadcrumb a:hover {
+    text-decoration: underline;
+    transition: all .3s ease-in-out;
+    background: var(--text);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
 }

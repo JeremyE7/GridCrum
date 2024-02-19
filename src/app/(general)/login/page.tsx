@@ -2,16 +2,18 @@
 
 import Link from 'next/link'
 import styles from './page.module.css'
-import AnimatedBackground from '../components/AnimatedBackground'
-import { FormEvent } from 'react'
-import { useUsers } from '../hooks/useUsers'
+import AnimatedBackground from '../../components/AnimatedBackground'
+import { FormEvent, useState } from 'react'
+import { useUsers } from '../../hooks/useUsers'
 import { Toaster, toast } from 'sonner'
 import { useRouter } from 'next/navigation'
-import { saveLocalStorage } from '../utils/DocEvents'
+import { saveLocalStorage } from '../../utils/DocEvents'
+import Loading from '../../components/Loading'
 
 export default function Login (): JSX.Element {
   const { loginUser } = useUsers()
   const router = useRouter()
+  const [loading, setLoading] = useState(false)
 
   function handleSubmit (event: FormEvent<HTMLFormElement>): void {
     event.preventDefault()
@@ -22,12 +24,13 @@ export default function Login (): JSX.Element {
       if (user.token === '') {
         toast.error('User or password incorrect')
       } else {
+        router.push('/projects')
         toast.success(user.msg)
         saveLocalStorage(user.user?.id.toString() ?? '', 'user')
         form.reset()
-        router.push('/projects')
       }
-    })
+    }).finally(() => setLoading(false))
+    setLoading(true)
   }
 
   return (
@@ -47,6 +50,7 @@ export default function Login (): JSX.Element {
         </span>
       </form>
       <Toaster richColors />
+      {loading && <Loading />}
     </main>
   )
 }

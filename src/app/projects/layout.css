@@ -1,3 +1,30 @@
+:root {
+    --text: #eeecf3;
+    --background: #07060a;
+    --primary: #ada5c5;
+    --primary-ts: #ada5c500;
+    --secondary: #644050;
+    --accent: #ae8684;
+    --backlite: #100e13;
+    --backlite2: #1a171f;
+    --alert: #ad1f1f;
+}
+
+html {
+    font-size: 16px;
+    font-family: 'Roboto', sans-serif;
+    color: var(--text);
+    background-color: var(--background);
+}
+
+body{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
 body {
     display: grid;
@@ -10,7 +37,7 @@ body {
     min-height: 100vh;
     padding: 10px;
     margin: 0;    
-    background: radial-gradient(circle, var(--background) 0%, var(--backlite) 100%);
+    background: radial-gradient(circle, var(--backlite2) 0%, var(--backlite) 50%, var(--background) 100%);
 }
 
 main {

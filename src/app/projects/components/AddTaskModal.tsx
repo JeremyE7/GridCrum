@@ -1,4 +1,4 @@
-import { ChangeEvent, useRef, useState } from 'react'
+import { ChangeEvent, useEffect, useRef, useState } from 'react'
 import styles from './css/modal.module.css'
 import { useOnClickOutside } from 'usehooks-ts'
 import { useProjects } from '@/app/hooks/useProyects'
@@ -12,6 +12,17 @@ export default function AddTask ({ dialogRef }: {
   const { projects, addTaskSpring } = useProjects()
   const { id } = useParams()
   const [minMaxDate, setMinMaxDate] = useState({ min: '', max: '' })
+
+  useEffect(() => {
+    if (id !== undefined) {
+      const spring = projects?.find(project => project.id.toString() === id.toString())?.springs[0]
+      if (spring != null) {
+        const min = (spring.startDate as unknown as string).split('T')[0]
+        const max = (spring.endDate as unknown as string).split('T')[0]
+        setMinMaxDate({ min, max })
+      }
+    }
+  }, [])
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
     e.preventDefault()

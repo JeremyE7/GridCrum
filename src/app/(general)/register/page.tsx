@@ -1,11 +1,11 @@
 'use client'
 import Link from 'next/link'
 import styles from './page.module.css'
-import AnimatedBackground from '../components/AnimatedBackground'
-import { useUsers } from '../hooks/useUsers'
+import AnimatedBackground from '../../components/AnimatedBackground'
+import { useUsers } from '../../hooks/useUsers'
 import { Toaster, toast } from 'sonner'
 import { useState } from 'react'
-import Loading from '../components/Loading'
+import Loading from '../../components/Loading'
 import { useRouter } from 'next/navigation'
 
 export default function Register (): JSX.Element {

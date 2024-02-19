@@ -12,12 +12,12 @@
     scrollbar-color: var(--primary) var(--backlite);
     scrollbar-arrow-color: var(--primary);
     --gantt-border-color-base: #0000005b;
-    --gantt-background-main: linear-gradient(to bottom, var(--backlite2) 0%, var(--primary) 100%);
+    --gantt-background-main: var(--backlite);
     --gantt-background-second: var(--backlite2);
     --gantt-control-element-bg: var(--primary);
     z-index: 1 !important;
-    box-shadow: 1px 10px 5px 0px rgba(0, 0, 0, 0.75);
-    -webkit-box-shadow: 1px 10px 5px 5px rgba(0, 0, 0, 0.75);
+    box-shadow: 1px 10px 5px 0px rgba(0, 0, 0, 0.75);     
+    -webkit-box-shadow: 1px 5px 5px 5px rgba(0, 0, 0, 0.75);
     -moz-box-shadow: 1px 10px 5px 5px rgba(0, 0, 0, 0.75);
     margin-top: 10px;
 }

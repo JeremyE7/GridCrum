@@ -6,7 +6,7 @@ import Divider from '@/app/components/Divider'
 import React from 'react'
 import { useModalsStore } from '@/app/utils/store/ModalsStore'
 import { useProjects } from '@/app/hooks/useProyects'
-import { useParams, useRouter } from 'next/navigation'
+import { useParams } from 'next/navigation'
 import { IoIosAdd } from 'react-icons/io'
 import { ImExit } from 'react-icons/im'
 import { MdAddComment, MdPlaylistAdd } from 'react-icons/md'
@@ -15,7 +15,6 @@ import { AiOutlineFileAdd } from 'react-icons/ai'
 export default function DropDown (): JSX.Element {
   const { openModal, modalAddUserTag, modalAddProject, modalAddSpring, modalAddTask, modalAddItem } = useModalsStore()
   const { getTags } = useProjects()
-  const router = useRouter()
   const { id, taskId } = useParams()
 
   const handleShowAddUserTagModal = (): void => {
@@ -46,7 +45,7 @@ export default function DropDown (): JSX.Element {
     console.log('Cerrar Sesión')
     localStorage.removeItem('token')
     localStorage.removeItem('user')
-    router.push('/login')
+    window.location.href = '/login'
   }
 
   return (
