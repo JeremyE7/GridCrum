@@ -59,7 +59,7 @@
     font-weight: bold;
     border: none;
     cursor: pointer;
-
+    transition: all 0.3s;
 }
 
 .main form button:hover, .link:hover{
@@ -80,6 +80,7 @@
     border: none;
     cursor: pointer;
     text-decoration: none;
+    transition: all 0.3s;
 }
 
 .main form span{
